@@ -30,7 +30,8 @@ export interface Config {
     braze: boolean
   }
   zipNaming: string
-  database: object
+  databaseURI: string
+  database: string
 }
 
 let configFile: Config

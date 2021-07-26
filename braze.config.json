@@ -18,7 +18,6 @@
     "braze": false
   },
   "zipNaming": "((filename)).((datehr))",
-  "database": {
-    "a": "b"
-  }
+  "databaseURI": "mongodb://root:testPass123@127.0.0.1:27017?retryWrites=true&writeConcern=majority",
+  "database": "braze"
 }

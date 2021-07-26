@@ -3,8 +3,9 @@ import express from 'express'
 import ewinston from 'express-winston'
 import helmet from 'helmet'
 import router from './api/router'
-import {initialize} from './util/config'
-import logger from './util/logger'
+import {initialize, Config} from './lib/config'
+import database from './lib/database'
+import logger from './lib/logger'
 
 const app = express()
 
@@ -31,7 +32,7 @@ app.use((q, s, n) => s.status(500).json({status: 500, message: 'The server was u
 initialize.then((config) => {
   if (config.resetAdminPass) {
     logger.warn(`'resetAdminPass' is set to true. The admin password will be reset.`)
-    // doPasswordSet();
+    // reset admin account
     logger.info(`Admin password has been reset`)
   }
   app.listen(config.port, () => {

@@ -9,6 +9,7 @@ var express_winston_1 = __importDefault(require("express-winston"));
 var helmet_1 = __importDefault(require("helmet"));
 var router_1 = __importDefault(require("./api/router"));
 var config_1 = require("./util/config");
+var database_1 = __importDefault(require("./util/database"));
 var logger_1 = __importDefault(require("./util/logger"));
 var app = express_1.default();
 app.use(express_winston_1.default.logger({
@@ -28,7 +29,17 @@ app.use(function (q, s, n) { return s.status(500).json({ status: 500, message: '
 config_1.initialize.then(function (config) {
     if (config.resetAdminPass) {
         logger_1.default.warn("'resetAdminPass' is set to true. The admin password will be reset.");
-        // doPasswordSet();
+        var db = new database_1.default(config);
+        db.connect().then(function (connection) {
+            var collection = connection.db(config.database).collection("users");
+            var user = {
+                name: 'admin',
+                email: 'admin@example.org'
+            };
+            collection.insertOne(user).then(function (result) {
+                console.log("Success - " + result);
+            });
+        });
         logger_1.default.info("Admin password has been reset");
     }
     app.listen(config.port, function () {

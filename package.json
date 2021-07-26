@@ -16,11 +16,13 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@types/mongodb": "^3.6.20",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
     "helmet": "^4.6.0",
     "minimist": "^1.2.5",
+    "mongodb": "^4.0.1",
     "winston": "^3.3.3"
   }
 }
