@@ -1,0 +1,24 @@
+{
+  "bind": "0.0.0.0",
+  "port": 8000,
+  "debug": true,
+  "jwtSecret": "XwD48UY5ymQJuMP_This_is_an_example_key_do_not_use_NZJhKLJrUDa5S8W",
+  "resetAdminPass": true,
+  "adminPassword": "Changeme123!",
+  "enableRegistration": false,
+  "blockBurnerDomains": false,
+  "performMXLookup": false,
+  "folders": {
+    "work": "./work",
+    "repo": "./repo"
+  },
+  "cacheZipFiles": {
+    "magic": false,
+    "solder": false,
+    "braze": false
+  },
+  "zipNaming": "((filename)).((datehr))",
+  "database": {
+    "a": "b"
+  }
+}
