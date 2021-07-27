@@ -10,7 +10,7 @@ export default class meta {
     })
   }
 
-  static brazeVersion = async (q: Request, s: Response, n: NextFunction) => {
+  static metalVersion = async (q: Request, s: Response, n: NextFunction) => {
     return await s.json({
       api: 'Braze',
       greeting: 'Thank you for choosing Braze!',

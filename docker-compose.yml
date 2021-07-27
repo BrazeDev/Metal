@@ -1,7 +1,7 @@
 version: "3"
 services:
 
-  braze:
+  metal:
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,21 +11,21 @@ services:
       mysql:
         condition: service_healthy
     volumes:
-      - "/braze.config.js:/braze/braze.config.js"
-    environment:
-      - CONFIG_PATH=/braze/braze.config.js
+      - /metal.config.js:/metal/metal.config.js:ro
 
   mysql:
     image: mysql:8.0
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD="true"
-      - MYSQL_USER=braze
+      - MYSQL_USER=metal
       - MYSQL_PASSWORD=Dontusethispassword
-      - MYSQL_DATABASE=braze
+      - MYSQL_DATABASE=metal
     ports:
-      - "3306"
+      - "3306:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 3s
       retries: 20
+    cap_add:
+      - SYS_NICE
 

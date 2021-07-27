@@ -1,0 +1,14 @@
+.git
+.vscode
+node_modules/
+repo/
+work/
+
+Dockerfile
+docker-compose.yml
+metal.cong.js
+
+dist/
+
+*.md
+LICENSE

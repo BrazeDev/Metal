@@ -54,8 +54,8 @@ module.exports = {
    */
   "database": {
     "host": "mysql",
-    "user": "braze",
+    "user": "metal",
     "password": "Dontusethispassword",
-    "database": "braze"
+    "database": "metal"
   }
 }

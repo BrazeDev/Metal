@@ -13,11 +13,11 @@ router.get('/verify', (q, s, n) => { })
 router.get('/verify/:key', (q, s, n) => { })
 
 /**
- * Braze Information Endpoints
+ * Metal Information Endpoints
  */
 
-router.get('/info', (q, s, n) => meta.brazeVersion(q, s, n))
-router.get('/v1/', (q, s, n) => meta.brazeVersion(q, s, n))
+router.get('/info', (q, s, n) => meta.metalVersion(q, s, n))
+router.get('/v1/', (q, s, n) => meta.metalVersion(q, s, n))
 
 /**
  * User Auth Endpoints

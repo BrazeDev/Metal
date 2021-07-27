@@ -1,5 +1,5 @@
 FROM node:16-slim AS build
-WORKDIR /usr/lib/braze
+WORKDIR /metal
 COPY package*.json ./
 RUN npm install
 RUN npm install -g typescript
@@ -7,11 +7,11 @@ COPY . .
 RUN tsc
 
 FROM node:16-slim
-WORKDIR /braze/app
+WORKDIR /metal/app
 COPY package*.json ./
-COPY braze.meta.json ./
+COPY metal.meta.json ./
 RUN npm ci --only=production
-COPY --from=build /usr/lib/braze/dist ./dist
+COPY --from=build /metal/dist ./dist
 
 EXPOSE 8000
 

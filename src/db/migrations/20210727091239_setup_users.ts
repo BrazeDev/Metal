@@ -1,4 +1,5 @@
 import {Knex} from "knex";
+import logger from '../../lib/logger'
 
 
 export async function up(knex: Knex): Promise<void> {
@@ -13,6 +14,7 @@ export async function up(knex: Knex): Promise<void> {
     table.boolean('active').defaultTo(true)
     table.boolean('verified').defaultTo(false)
     table.boolean('admin').defaultTo(false)
+    logger.notice('Created table `users`')
   })
 }
 

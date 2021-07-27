@@ -1,4 +1,5 @@
 import {Knex} from "knex";
+import logger from '../../lib/logger'
 
 
 export async function up(knex: Knex): Promise<void> {
@@ -13,6 +14,7 @@ export async function up(knex: Knex): Promise<void> {
     table.timestamp('created').defaultTo(knex.fn.now())
     table.timestamp('updated').defaultTo(knex.fn.now())
     table.boolean('active').defaultTo(true)
+    logger.notice('Created table `mods`')
   })
 }
 

@@ -1,4 +1,5 @@
 import { Knex } from "knex";
+import logger from '../../lib/logger'
 
 
 export async function up(knex: Knex): Promise<void> {
@@ -8,6 +9,7 @@ export async function up(knex: Knex): Promise<void> {
     table.foreign('pack_id').references('packs.id')
     table.integer('mod_id').notNullable().unsigned()
     table.foreign('mod_id').references('mods.id')
+    logger.notice('Created table `packmods`')
   })
 }
 

@@ -4,7 +4,7 @@ import ewinston from 'express-winston'
 import helmet from 'helmet'
 import router from './api/router'
 import database from './db/database'
-import {initialize as initConfig} from './lib/config'
+import Config from './lib/config'
 import logger from './lib/logger'
 
 const app = express()
@@ -29,13 +29,10 @@ app.use('/', router)
 app.use((q, s, n) => s.status(404).json({status: 404, message: 'The requested route could not be found'}))
 app.use((q, s, n) => s.status(500).json({status: 500, message: 'The server was unable to process this request'}))
 
-initConfig.then((config) => {
-  if (config.resetAdminPass) {
-    logger.warn(`'resetAdminPass' is set to true. The admin password will be reset.`)
-    // reset admin account
-    // logger.info(`Admin password has been reset`)
-  }
+const config = new Config()
+
+config.init().then((config) => {
   app.listen(config.port, () => {
-    logger.info(`Listening on port ${config.port}`)
+    logger.info(`Metal is ready and listening on port ${config.port}`)
   })
 })
