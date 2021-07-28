@@ -1,13 +1,11 @@
-import logger from './logger'
+import fsp from 'fs/promises'
 import isDocker from 'is-docker'
 import database from '../db/database'
 import {up as up_users} from '../db/migrations/20210727091239_setup_users'
 import {up as up_mods} from '../db/migrations/20210727091904_setup_mods'
 import {up as up_packs} from '../db/migrations/20210727091915_setup_packs'
 import {up as up_pmods} from '../db/migrations/20210727092737_setup_packmods'
-import { findSeries } from 'async'
-import fsp from 'fs/promises'
-import fs from 'fs'
+import logger from './logger'
 
 const args = require('minimist')(process.argv.slice(2))
 
@@ -39,9 +37,11 @@ export interface Config {
   }
 }
 
-export default class config {
+export default class config_c {
 
-  private configpath: string 
+  private configpath: string
+
+  private static loadedConfig: Config
 
   constructor() {
     if (typeof process.env.CONFIG_PATH !== 'undefined') {
@@ -59,6 +59,16 @@ export default class config {
     }
   }
 
+  public static fetchConfig(): Promise<Config> {
+    return new Promise((resolve, reject) => {
+      if (this.loadedConfig) {
+        resolve(this.loadedConfig)
+      } else {
+        logger.error(`An attempt was made to access the config before initialization was complete. Things are going to break.`)
+      }
+    })
+  }
+
   private throwError(exitCode: number, message: string) {
     logger.emerg(message)
     process.exit(exitCode)
@@ -67,7 +77,8 @@ export default class config {
   private loadConfig(): Promise<Config> {
     return new Promise((resolve, reject) => {
       try {
-        resolve(require(this.configpath))
+        config_c.loadedConfig = require(this.configpath)
+        resolve(config_c.loadedConfig)
       } catch (e) {
         this.throwError(1, `Unable to read config. You can specify a custom location with the "CONFIG_PATH" env var, or the "--config" cmd line argument.`)
       }
@@ -82,7 +93,7 @@ export default class config {
         if (!config.debug) process.exit(2)
       }
       if (config.jwtSecret.length < 32) this.throwError(2, `The JWT secret must be at least 32 chars. Keys longer than 256 chars may cause performance issues. Metal will now exit.`)
-      database.testConnection(config).then(() => {
+      database.testConnection().then(() => {
         logger.info('Database connection ok!')
         resolve(config)
       }).catch(e => this.throwError(2, `Unable to connect to the database. Check that your connection data is correct in the config file. Metal will now exit.`))
@@ -91,13 +102,13 @@ export default class config {
 
   private initDatabase(config: Config): Promise<Config> {
     return new Promise((resolve, reject) => {
-      database.connect(config).then((db) => {
-        db.schema.hasTable('users').then(b => { return up_users(db) }).then(() => {
-          return db.schema.hasTable('mods').then(b => { return up_mods(db) })
+      database.connect().then((db) => {
+        db.schema.hasTable('users').then(b => {return up_users(db)}).then(() => {
+          return db.schema.hasTable('mods').then(b => {return up_mods(db)})
         }).then(() => {
-          return db.schema.hasTable('packs').then(b => { return up_packs(db) })
+          return db.schema.hasTable('packs').then(b => {return up_packs(db)})
         }).then(() => {
-          return db.schema.hasTable('pmods').then(b => { return up_pmods(db) })
+          return db.schema.hasTable('pmods').then(b => {return up_pmods(db)})
         }).then(() => {
           resolve(config)
         })
@@ -112,11 +123,13 @@ export default class config {
       Promise.all([
         fsp.access(work).catch(e => {
           logger.info(`Creating work directory at '${work}'`)
-          return fsp.mkdir(work)}
+          return fsp.mkdir(work)
+        }
         ),
         fsp.access(repo).catch(e => {
           logger.info(`Creating repo directory at '${repo}'`)
-          return fsp.mkdir(repo)}
+          return fsp.mkdir(repo)
+        }
         )
       ]).then(() => resolve(config))
     })

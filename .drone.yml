@@ -1,0 +1,23 @@
+kind: pipeline
+name: build_docker
+
+steps:
+- name: build typescript
+  image: node:16
+  commands:
+    - npm install -g typescript
+    - npm ci
+    - tsc
+- name: notify discord
+  image: appleboy/drone-discord
+  settings:
+    webhook_id:
+      from_secret: discord_webhook_id
+    webhook_token:
+      from_secret: discord_webhook_token
+    message: >
+      {{#success build.status}}
+        Build succeeded - '{{repo.name}}' #{{build.number}} (ref {{build.ref}}).
+      {{else}}
+        Build failed - '{{repo.name}}' #{{build.number}} (ref {{build.ref}}).
+      {{/success}}

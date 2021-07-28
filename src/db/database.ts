@@ -1,7 +1,6 @@
-import {knex, Knex} from 'knex'
-import logger from '../lib/logger'
 import bcrypt from 'bcrypt'
-import {Config} from '../lib/config'
+import {knex, Knex} from 'knex'
+import config_c, {Config} from '../lib/config'
 
 
 export interface User {
@@ -19,12 +18,12 @@ export interface User {
 
 export default class database {
 
-  static connect(config: Config): Promise<Knex> {
+  static connect(): Promise<Knex> {
     return new Promise(async (resolve, reject) => {
       try {
         let db = await knex({
           client: 'mysql2',
-          connection: config.database
+          connection: (await config_c.fetchConfig()).database
         })
         resolve(db)
       } catch (e) {
@@ -33,9 +32,9 @@ export default class database {
     })
   }
 
-  static testConnection(config: Config): Promise<boolean> {
+  static testConnection(): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      database.connect(config).then((db) => {
+      database.connect().then((db) => {
         db.raw('select 1+1 as result').then(() => {
           resolve(true)
         }).catch((e) => {
@@ -49,7 +48,7 @@ export default class database {
 
   private static resetExistingAdmin(newpass: string, db: Knex): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      bcrypt.genSalt(20, (e, salt) => {
+      bcrypt.genSalt(10, (e, salt) => {
         if (e) reject(e)
         bcrypt.hash(newpass, salt, (e, hash) => {
           if (e) reject(e)
@@ -66,7 +65,7 @@ export default class database {
 
   private static createNewAdmin(newpass: string, db: Knex): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      bcrypt.genSalt(20,  (e, salt) => {
+      bcrypt.genSalt(10, (e, salt) => {
         if (e) reject(e)
         bcrypt.hash(newpass, salt, (e, hash) => {
           if (e) reject(e)
@@ -86,7 +85,7 @@ export default class database {
 
   static resetAdminPassword(config: Config): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      database.connect(config).then((db) => {
+      database.connect().then((db) => {
         db('users').select('id').where('username', 'admin').then((rows) => {
           if (!rows.length) {
             this.createNewAdmin(config.adminPassword, db).then(() => resolve(true)).catch(e => reject(e))
