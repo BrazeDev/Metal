@@ -43,18 +43,18 @@ Braze is a replacement for 'Solder' - the software created by the team behind th
 
 This will be filled out in time
 
-[contributors-shield]: https://img.shields.io/github/contributors/BrazeDev/Braze.svg?style=for-the-badge
-[contributors-url]: https://github.com/BrazeDev/Braze/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/BrazeDev/Braze.svg?style=for-the-badge
-[forks-url]: https://github.com/BrazeDev/Braze/network/members
-[stars-shield]: https://img.shields.io/github/stars/BrazeDev/Braze.svg?style=for-the-badge
-[stars-url]: https://github.com/BrazeDev/Braze/stargazers
-[issues-shield]: https://img.shields.io/github/issues/BrazeDev/Braze.svg?style=for-the-badge
-[issues-url]: https://github.com/BrazeDev/Braze/issues
-[license-shield]: https://img.shields.io/github/license/BrazeDev/Braze.svg?style=for-the-badge
-[license-url]: https://github.com/BrazeDev/Braze/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/BrazeDev/Metal.svg?style=for-the-badge
+[contributors-url]: https://github.com/BrazeDev/Metal/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/BrazeDev/Metal.svg?style=for-the-badge
+[forks-url]: https://github.com/BrazeDev/Metal/network/members
+[stars-shield]: https://img.shields.io/github/stars/BrazeDev/Metal.svg?style=for-the-badge
+[stars-url]: https://github.com/BrazeDev/Metal/stargazers
+[issues-shield]: https://img.shields.io/github/issues/BrazeDev/Metal.svg?style=for-the-badge
+[issues-url]: https://github.com/BrazeDev/Metal/issues
+[license-shield]: https://img.shields.io/github/license/BrazeDev/Metal.svg?style=for-the-badge
+[license-url]: https://github.com/BrazeDev/Metal/blob/master/LICENSE
 [discord-shield]: https://img.shields.io/discord/810632951993597952?style=for-the-badge
 [discord-url]: https://discord.gg/u7wG9ZSNRn
-[build-shield]: https://img.shields.io/drone/build/BrazeDev/Braze?server=https%3A%2F%2Fdrone.thatsimplekid.com&style=for-the-badge
-[build-url]: https://drone.thatsimplekid.com/BrazeDev/Braze/
+[build-shield]: https://img.shields.io/drone/build/BrazeDev/Metal?server=https%3A%2F%2Fdrone.thatsimplekid.com&style=for-the-badge
+[build-url]: https://drone.thatsimplekid.com/BrazeDev/Metal/
 [product-screenshot]: meta/screenshot.png
