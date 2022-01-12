@@ -1,11 +1,11 @@
 export default {
-    port: 8083,
-    metricsPort: 9100,
-    dbConnection: "mongodb://localhost:27017/metaltest",
-    saltRounds: 10,
-    accessTokenTTL: "15m",
-    refreshTokenTTL: "1y",
-    accessTokenPrivateKey: `-----BEGIN RSA PRIVATE KEY-----
+  port: 8083,
+  metricsPort: 9100,
+  dbConnection: 'mongodb://localhost:27017/metaltest',
+  saltRounds: 10,
+  accessTokenTTL: '15m',
+  refreshTokenTTL: '1y',
+  accessTokenPrivateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIIJKgIBAAKCAgEA2Kbwwu7s8HC5uQtVsasEiZcje/z2Vz/38DkrFvUs1ODaaRf2
 g+8KnW5p2WpsIFdQKIxzsOXoTG2V5OuXv1iX/HFd82XGKpS3ZLpB4/GT3JKRRbQ1
 A7E5NMFOG0g6tAYrQmNUweR4e+S2ethmzhjmkyhU714/GIKQ+1SiIyi19QQ0w6Yq
@@ -56,7 +56,7 @@ xnNbNkzWTszsyjgY7K4y15J3DGhv90ykQU2d5cTjDEvdPT0hkTllmBy4natc5pXF
 6l/vypEZQPNJXL5sWvn44vNKZEIIAX0agwZDCUSwAs+2CGTFr4Qwu3/JlTRhjQMl
 aWYrirkoHsH4gBwvy8Y1NTKe4ErnbkKK/yy6MBWS48p84QxAspG5f7jNjzrTMA==
 -----END RSA PRIVATE KEY-----`,
-    accessTokenPublicKey: `-----BEGIN PUBLIC KEY-----
+  accessTokenPublicKey: `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA2Kbwwu7s8HC5uQtVsasE
 iZcje/z2Vz/38DkrFvUs1ODaaRf2g+8KnW5p2WpsIFdQKIxzsOXoTG2V5OuXv1iX
 /HFd82XGKpS3ZLpB4/GT3JKRRbQ1A7E5NMFOG0g6tAYrQmNUweR4e+S2ethmzhjm
@@ -70,7 +70,7 @@ L3/QSyXFtTz1OGXM8yQgFePYBQWOtopSlO9OpzaiVIcHD8G9ZFePRHEzSHOhssx4
 RuglUheG2LdI5iwpUlZp5U+jKXXAl1VrdoQ/HnMH2i5AR5EKA8X8yb6EnB39qZSe
 l8IfEad9RWwxKQ8K7BQa8qcCAwEAAQ==
 -----END PUBLIC KEY-----`,
-    refreshTokenPrivateKey: `-----BEGIN RSA PRIVATE KEY-----
+  refreshTokenPrivateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIIJKQIBAAKCAgEA5fZjcaW8C9lc6skl/3mHuQVGJIZmEmIPT4JLMfuQtZ07aQmQ
 849LiI3997/XETlMxBu0TD5uxHKZknLTtlI6RgnAT1qjNRXS7Aumy6KZ0ALt1Sg2
 WZ015cAXU8C6UAJZlRoz0AjntIGL7mo1YOR5mtIWZW0dxRS7zNj6M2hOLQ/mQzVD
@@ -121,7 +121,7 @@ fQnEYYXRnyRetvs/mA/5ToBDfsnri6NXdLYgUKYfgTNHHxREQAN0F6eRWK8N1pIH
 GLiGNsQwOqaa96nCadm0nDa7TMgH3z0Rk3cn0gPnCJ3Qj0vj9GIbY8VG4BHvCYTO
 ESCrob5HHxwWKvgekjOhV13f2W8e//AgZu+U2+0YMV4Xhc2mVFJG6XvX6X+V
 -----END RSA PRIVATE KEY-----`,
-    refreshTokenPublicKey: `-----BEGIN PUBLIC KEY-----
+  refreshTokenPublicKey: `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5fZjcaW8C9lc6skl/3mH
 uQVGJIZmEmIPT4JLMfuQtZ07aQmQ849LiI3997/XETlMxBu0TD5uxHKZknLTtlI6
 RgnAT1qjNRXS7Aumy6KZ0ALt1Sg2WZ015cAXU8C6UAJZlRoz0AjntIGL7mo1YOR5

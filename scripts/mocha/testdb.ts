@@ -5,14 +5,14 @@ import { logMain as log } from '../../src/utils/log'
 const mockMongoose = new MockMongoose(mongoose)
 
 before(async () => {
-    log.warn(`Running in test mode - DB changes won't be saved`)
-    await mockMongoose.prepareStorage()
+  log.warn('Running in test mode - DB changes won\'t be saved')
+  await mockMongoose.prepareStorage()
 })
 
 beforeEach(async () => {
-    await mockMongoose.helper.reset()
+  await mockMongoose.helper.reset()
 })
 
 after(async () => {
-    mockMongoose.mongodHelper.stop()
+  mockMongoose.mongodHelper.stop()
 })

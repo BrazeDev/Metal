@@ -1,43 +1,43 @@
 import { boolean, object, string, TypeOf } from 'zod'
 
 const modpayload = {
-    body: object({
-        name: string({
-            required_error: '`name` is required'
-        }),
-        author: string({}),
-        imageurl: string({}),
-        weburl: string({})
-    })
+  body: object({
+    name: string({
+      required_error: '`name` is required'
+    }),
+    author: string({}),
+    imageurl: string({}),
+    weburl: string({})
+  })
 }
 
 const modparams = {
-    params: object({
-        slug: string({
-            required_error: '`slug` is required'
-        })
+  params: object({
+    slug: string({
+      required_error: '`slug` is required'
     })
+  })
 }
 
 const modversionpayload = {
-    body: object({
-        filename: string({
-            required_error: '`filename` is required'
-        }),
-        md5: string({}),
-        enabled: boolean({})
-    })
+  body: object({
+    filename: string({
+      required_error: '`filename` is required'
+    }),
+    md5: string({}),
+    enabled: boolean({})
+  })
 }
 
 const modversionparams = {
-    params: object({
-        slug: string({
-            required_error: '`slug` is required'
-        }),
-        version: string({
-            required_error: '`vers` is required'
-        })
+  params: object({
+    slug: string({
+      required_error: '`slug` is required'
+    }),
+    version: string({
+      required_error: '`vers` is required'
     })
+  })
 }
 
 export const createModSchema = object({ ...modpayload, ...modparams })

@@ -16,18 +16,18 @@ const mport = config.get<number>('metricsPort')
 
 const app = express()
 
-app.use(express.json()) 
+app.use(express.json())
 app.use(responseTime((q: Request, s: Response, t: number) => doResponseTime(q, s, t)))
 // Attempts to deserialize user from JWT, doesn't bother if there isn't one
 app.use(deserializeUser)
 app.use('/api', router)
 
 app.listen(port, async () => {
-    log.info(`Braze is listening on http://0.0.0.0:${port}`)
-    await db.connect()
-    // Set up metric server for prometheus
-    startMetricsServer(mport)
-    swaggerDocs(app, port)
+  log.info(`Braze is listening on http://0.0.0.0:${port}`)
+  await db.connect()
+  // Set up metric server for prometheus
+  startMetricsServer(mport)
+  swaggerDocs(app, port)
 })
 
 export default app

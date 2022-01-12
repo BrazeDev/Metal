@@ -1,16 +1,16 @@
 import express, { Request, Response } from 'express'
 import { createUserHandler, whoamiHandler } from './controllers/user.controller'
 import { getUserSessionsHandler, createUserSessionHandler, deleteSessionHandler } from './controllers/session.controller'
-import { 
+import {
 //    getModsHandler,
-    getModHandler,
-    getModVersionHandler,
-    createModHandler,
-    createModVersionHandler,
-    deleteModHandler,
-    deleteModVersionHandler,
-    updateModHandler,
-    updateModVersionHandler
+  getModHandler,
+  getModVersionHandler,
+  createModHandler,
+  createModVersionHandler,
+  deleteModHandler,
+  deleteModVersionHandler,
+  updateModHandler,
+  updateModVersionHandler
 } from './controllers/mod.controller'
 import { createUserSchema } from './schemas/user.schema'
 import { createSessionSchema } from './schemas/session.schema'
@@ -28,7 +28,7 @@ const router = express.Router()
  *     - Health
  *     summary: Enpoint to check basic health
  *     description: Responds with a 200 if the app is running
- *     responses: 
+ *     responses:
  *       200:
  *         description: Braze Metal is running
  */
@@ -43,7 +43,7 @@ router.get('/health', (q: Request, s: Response) => s.sendStatus(200))
  *     summary: Register a new user account
  *     requestBody:
  *       required: true
- *       content: 
+ *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/CreateUserInput'
@@ -69,10 +69,10 @@ router.post('/users', validateResource(createUserSchema), createUserHandler)
  *     - User
  *     summary: Returns the username of the currently logged in user
  *     responses:
- *       200: 
+ *       200:
  *         description: Logged in
  *       403:
- *         description: Not logged in      
+ *         description: Not logged in
  */
 router.get('/whoami', requireUser, whoamiHandler)
 
@@ -87,7 +87,7 @@ router.get('/whoami', requireUser, whoamiHandler)
  *       200:
  *         description: Logged on sessions
  *       401:
- *         description: Not logged in 
+ *         description: Not logged in
  */
 router.get('/sessions', requireUser, getUserSessionsHandler)
 
@@ -108,7 +108,7 @@ router.get('/sessions', requireUser, getUserSessionsHandler)
  *       200:
  *         description: Session successfully created
  *       400:
- *         description: Incorrect username/password 
+ *         description: Incorrect username/password
  */
 router.post('/sessions', validateResource(createSessionSchema), createUserSessionHandler)
 
@@ -116,11 +116,11 @@ router.post('/sessions', validateResource(createSessionSchema), createUserSessio
  * @openapi
  * '/api/sessions':
  *   delete:
- *     tags: 
+ *     tags:
  *     - Session
  *     summary: Invalidate a session
  *     responses:
- *       200: 
+ *       200:
  *         description: Session successfully invalidated
  *       401:
  *         description: Not logged in
@@ -129,22 +129,22 @@ router.delete('/sessions', requireUser, deleteSessionHandler)
 
 router.get('/mods', requireUser)
 
-//router.get('/mods/list/:page', requireUser, getModsHandler)
+// router.get('/mods/list/:page', requireUser, getModsHandler)
 
-router.get('/mods/:slug', [ requireUser, validateResource(getModSchema) ], getModHandler)
+router.get('/mods/:slug', [requireUser, validateResource(getModSchema)], getModHandler)
 
 router.get('/mods/:slug/:version', requireUser, getModVersionHandler)
 
-router.post('/mods/:slug', [ requireUser, validateResource(createModSchema) ], createModHandler)
+router.post('/mods/:slug', [requireUser, validateResource(createModSchema)], createModHandler)
 
 router.post('/mods/:slug/:version', requireUser, createModVersionHandler)
 
-router.delete('/mods/:slug', [ requireUser, validateResource(deleteModSchema) ], deleteModHandler)
+router.delete('/mods/:slug', [requireUser, validateResource(deleteModSchema)], deleteModHandler)
 
 router.delete('/mods/:slug/:version', requireUser, deleteModVersionHandler)
 
-router.put('/mods/:slug', [ requireUser, validateResource(updateModSchema) ], updateModHandler)
+router.put('/mods/:slug', [requireUser, validateResource(updateModSchema)], updateModHandler)
 
-router.put('/mods/:slug/:version', [ requireUser, validateResource(updateModVersionSchema) ], updateModVersionHandler)
+router.put('/mods/:slug/:version', [requireUser, validateResource(updateModVersionSchema)], updateModVersionHandler)
 
 export default router

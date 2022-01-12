@@ -39,23 +39,23 @@ import { object, string, TypeOf } from 'zod'
  *           type: string
  */
 export const createUserSchema = object({
-    body: object({
-        username: string({
-            required_error: '`username` is required'
-        }),
-        mailaddr: string({
-            required_error: '`mailaddr` is required'
-        }).email('Invalid email address'),
-        password: string({
-            required_error: '`password` is required'
-        }).min(8, 'Password must contain at least 8 characters'),
-        passconf: string({
-            required_error: '`passconf` is required'
-        })
-    }).refine((data) => data.password === data.passconf, {
-        message: 'Passwords do not match',
-        path: [ 'passconf' ]
+  body: object({
+    username: string({
+      required_error: '`username` is required'
+    }),
+    mailaddr: string({
+      required_error: '`mailaddr` is required'
+    }).email('Invalid email address'),
+    password: string({
+      required_error: '`password` is required'
+    }).min(8, 'Password must contain at least 8 characters'),
+    passconf: string({
+      required_error: '`passconf` is required'
     })
+  }).refine((data) => data.password === data.passconf, {
+    message: 'Passwords do not match',
+    path: ['passconf']
+  })
 })
 
 export type CreateUserInput = Omit<TypeOf<typeof createUserSchema>, 'body.passconf'>

@@ -1,22 +1,22 @@
 {
-    "include": [
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "**/*.d.ts",
-        "node_modules",
-        "**/index.ts",
-        "**/interfaces/**",
-        "**/*.spec.ts"
-    ],
-    "reporter": [
-        "text-summary",
-        "html",
-        "lcov"
-    ],
-    "extension": [
-        ".ts"
-    ],
-    "check-coverage": true,
-    "all": true
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.d.ts",
+    "node_modules",
+    "**/index.ts",
+    "**/interfaces/**",
+    "**/*.spec.ts"
+  ],
+  "reporter": [
+    "text-summary",
+    "html",
+    "lcov"
+  ],
+  "extension": [
+    ".ts"
+  ],
+  "check-coverage": true,
+  "all": true
 }
