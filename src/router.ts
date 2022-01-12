@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express'
-import { createUserHandler } from './controllers/user.controller'
+import { createUserHandler, whoamiHandler } from './controllers/user.controller'
 import { getUserSessionsHandler, createUserSessionHandler, deleteSessionHandler } from './controllers/session.controller'
 import { 
 //    getModsHandler,
@@ -16,7 +16,7 @@ import { createUserSchema } from './schemas/user.schema'
 import { createSessionSchema } from './schemas/session.schema'
 import validateResource from './middleware/validateResource'
 import requireUser from './middleware/requireUser'
-import { createModSchema, deleteModSchema, getModSchema, updateModSchema } from './schemas/mod.schema'
+import { createModSchema, deleteModSchema, getModSchema, updateModSchema, updateModVersionSchema } from './schemas/mod.schema'
 
 const router = express.Router()
 
@@ -60,6 +60,23 @@ router.get('/health', (q: Request, s: Response) => s.sendStatus(200))
  *         description: Conflict
  */
 router.post('/users', validateResource(createUserSchema), createUserHandler)
+
+/**
+ * @openapi
+ * '/api/whoami':
+ *   get:
+ *     tags:
+ *     - User
+ *     summary: Returns the username of the currently logged in user
+ *     responses:
+ *       200: 
+ *         description: Logged in
+ *         content:
+ *           application/json
+ *       403:
+ *         description: Not logged in      
+ */
+router.get('/whoami', requireUser, whoamiHandler)
 
 /**
  * @openapi
@@ -129,5 +146,7 @@ router.delete('/mods/:slug', [ requireUser, validateResource(deleteModSchema) ],
 router.delete('/mods/:slug/:version', requireUser, deleteModVersionHandler)
 
 router.put('/mods/:slug', [ requireUser, validateResource(updateModSchema) ], updateModHandler)
+
+router.put('/mods/:slug/:version', [ requireUser, validateResource(updateModVersionSchema) ], updateModVersionHandler)
 
 export default router
