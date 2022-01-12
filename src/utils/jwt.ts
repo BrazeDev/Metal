@@ -22,7 +22,7 @@ export function verifyJwt (
     const decoded = jwt.verify(token, publicKey)
     return { valid: true, expired: false, decoded }
   } catch (e: any) {
-    if (typeof e !== typeof TokenExpiredError || process.env.NODE_ENV !== 'test') log.error(e)
+    //if (typeof e !== typeof TokenExpiredError || process.env.NODE_ENV !== 'test') log.error(e)
     return { valid: false, expired: e.message === 'jwt expired', decoded: null }
   }
 }
