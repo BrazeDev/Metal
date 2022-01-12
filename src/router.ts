@@ -131,20 +131,260 @@ router.get('/mods', requireUser)
 
 // router.get('/mods/list/:page', requireUser, getModsHandler)
 
+/**
+ * @openapi
+ * '/api/mods/{slug}':
+ *   get:
+ *     tags:
+ *     - Mods
+ *     summary: Get info about a mod
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetModResponse'
+ *       401:
+ *         description: Not logged in
+ *       404:
+ *         description: Mod doesn't exist
+ */
 router.get('/mods/:slug', [requireUser, validateResource(getModSchema)], getModHandler)
 
-router.get('/mods/:slug/:version', requireUser, getModVersionHandler)
-
+/**
+ * @openapi
+ * '/api/mods/{slug}':
+ *   post:
+ *     tags:
+ *     - Mods
+ *     summary: Create a mod
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateModInput'
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateModResponse'
+ *       401:
+ *         description: Not logged in
+ */
 router.post('/mods/:slug', [requireUser, validateResource(createModSchema)], createModHandler)
 
-router.post('/mods/:slug/:version', requireUser, createModVersionHandler)
-
+/**
+ * @openapi
+ * '/api/mods/{slug}':
+ *   delete:
+ *     tags:
+ *     - Mods
+ *     summary: Delete a mod
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod
+ *     responses:
+ *       200:
+ *         description: Ok             
+ *       401:
+ *         description: Not logged in
+ *       404:
+ *         description: Mod doesn't exist
+ */
 router.delete('/mods/:slug', [requireUser, validateResource(deleteModSchema)], deleteModHandler)
 
-router.delete('/mods/:slug/:version', requireUser, deleteModVersionHandler)
-
+/**
+ * @openapi
+ * '/api/mods/{slug}':
+ *   put:
+ *     tags:
+ *     - Mods
+ *     summary: Update a mod
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateModInput'
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateModResponse'
+ *       401:
+ *         description: Not logged in
+ */
 router.put('/mods/:slug', [requireUser, validateResource(updateModSchema)], updateModHandler)
 
+/**
+ * @openapi
+ * '/api/mods/{slug}/{version}':
+ *   get:
+ *     tags:
+ *     - Mods
+ *     summary: Get info about a mod version
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod version
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Version of the mod version
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetModVersionResponse'
+ *       401:
+ *         description: Not logged in
+ *       404:
+ *         description: Mod version doesn't exist
+ */
+router.get('/mods/:slug/:version', requireUser, getModVersionHandler)
+
+/**
+ * @openapi
+ * '/api/mods/{slug}/{version}':
+ *   post:
+ *     tags:
+ *     - Mods
+ *     summary: Create a mod version
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod version
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Version of the mod version
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateModVersionInput'
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateModVersionResponse'
+ *       401:
+ *         description: Not logged in
+ */
+router.post('/mods/:slug/:version', requireUser, createModVersionHandler)
+
+/**
+ * @openapi
+ * '/api/mods/{slug}/{version}':
+ *   delete:
+ *     tags:
+ *     - Mods
+ *     summary: Delete a mod version
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod version
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Version of the mod version
+ *     responses:
+ *       200:
+ *         description: Ok             
+ *       401:
+ *         description: Not logged in
+ *       404:
+ *         description: Mod version doesn't exist
+ */
+router.delete('/mods/:slug/:version', requireUser, deleteModVersionHandler)
+
+/**
+ * @openapi
+ * '/api/mods/{slug}/{version}':
+ *   put:
+ *     tags:
+ *     - Mods
+ *     summary: Update a mod version
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Slug (modID) of the mod version
+ *       - in: path
+ *         name: slug
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Version of the mod version
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateModVersionInput'
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateModVersionResponse'
+ *       401:
+ *         description: Not logged in
+ */
 router.put('/mods/:slug/:version', [requireUser, validateResource(updateModVersionSchema)], updateModVersionHandler)
 
 export default router

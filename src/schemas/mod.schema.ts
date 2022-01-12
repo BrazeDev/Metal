@@ -1,5 +1,61 @@
 import { boolean, object, string, TypeOf } from 'zod'
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateModInput:
+ *       type: object
+ *       required:
+ *         - name
+ *         - author
+ *         - imageurl
+ *         - weburl
+ *       properties:
+ *         name:
+ *           type: string
+ *           default: Test Mod
+ *         author:
+ *           type: string
+ *           default: Mr. Test
+ *         imageurl:
+ *           type: string
+ *           default: 'https://placehold.it/300'
+ *         weburl:
+ *           type: string
+ *           default: 'https://braze.dev/'
+ *     CreateModResponse:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         slug:
+ *           type: string
+ *         name:
+ *           type: string
+ *         author:
+ *           type: string
+ *         imageurl:
+ *           type: string
+ *         weburl:
+ *           type: string
+ *     GetModResponse:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         slug:
+ *           type: string
+ *         name:
+ *           type: string
+ *         author:
+ *           type: string
+ *         imageurl:
+ *           type: string
+ *         weburl:
+ *           type: string
+ */
+
 const modpayload = {
   body: object({
     name: string({
@@ -19,6 +75,57 @@ const modparams = {
   })
 }
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateModVersionInput:
+ *       type: object
+ *       required:
+ *         - filename
+ *         - md5
+ *         - enabled
+ *       properties:
+ *         filename:
+ *           type: string
+ *           default: '/mods/TESTmod/testmod-2.3.4.zip'
+ *         md5:
+ *           type: string
+ *           default: 'aff97160474a056e838c1f721af01edf'
+ *         enabled:
+ *           type: boolean
+ *           default: true
+ *     CreateModVersionResponse:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         slug:
+ *           type: string
+ *         version:
+ *           type: string
+ *         filename:
+ *           type: string
+ *         md5:
+ *           type: string
+ *         enabled:
+ *           type: boolean
+ *     GetModVersionResponse:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         slug:
+ *           type: string
+ *         version:
+ *           type: string
+ *         filename:
+ *           type: string
+ *         md5:
+ *           type: string
+ *         enabled:
+ *           type: boolean
+ */
 const modversionpayload = {
   body: object({
     filename: string({
