@@ -16,7 +16,7 @@ export const databaseResponseTimeHistogram = new client.Histogram({
   labelNames: ['operation', 'success']
 })
 
-export const startMetricsServer = (port: number) => {
+export const startMetricsServer = (port: number): void => {
   const collectDefaultMetrics = client.collectDefaultMetrics
   collectDefaultMetrics()
   app.get('/metrics', async (q, s) => {
@@ -28,7 +28,7 @@ export const startMetricsServer = (port: number) => {
   })
 }
 
-export const doResponseTime = (q: Request, s: Response, time: number) => {
+export const doResponseTime = (q: Request, s: Response, time: number): void => {
   if (q?.route?.path) {
     restResponseTimeHistogram.observe(
       {

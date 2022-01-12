@@ -22,8 +22,8 @@ export default {
   // The contents of jwtAccess.key is the private key, and jwtAccess.pub will
   // contain the public key. Once done, repeat for the refresh token.
   // Loading keys directly from files is a work in progress.
-  accessTokenPrivateKey: `< PUT AN RSA KEY HERE >`,
-  accessTokenPublicKey: `< PUT AN RSA KEY HERE >`,
-  refreshTokenPrivateKey: `< PUT AN RSA KEY HERE >`,
-  refreshTokenPublicKey: `< PUT AN RSA KEY HERE >`
+  accessTokenPrivateKey: '< PUT AN RSA KEY HERE >',
+  accessTokenPublicKey: '< PUT AN RSA KEY HERE >',
+  refreshTokenPrivateKey: '< PUT AN RSA KEY HERE >',
+  refreshTokenPublicKey: '< PUT AN RSA KEY HERE >'
 }

@@ -4,7 +4,7 @@ const log: Logger = new Logger()
 
 if (process.env.NODE_ENV === 'test') {
   log.setSettings({
-    minLevel: 'warn'
+    minLevel: 'fatal'
   })
 }
 

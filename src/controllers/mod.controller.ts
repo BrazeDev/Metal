@@ -1,16 +1,15 @@
 import { Request, Response } from 'express'
 import { CreateModInput, UpdateModInput, DeleteModInput, GetModInput, CreateModVersionInput, UpdateModVersionInput, DeleteModVersionInput, GetModVersionInput } from '../schemas/mod.schema'
 import { createMod, deleteMod, findAndUpdateMod, findMod, createModVersion, deleteModVersion, findAndUpdateModVersion, findModVersion } from '../services/mod.service'
-//import { logMain as log } from '../utils/log'
 
-export const createModHandler = async (q: Request<CreateModInput['params']>, s: Response) => {
+export const createModHandler = async (q: Request<CreateModInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const params = q.params
   const body = q.body
   const mod = await createMod({ ...params, ...body })
-  s.send(mod)
+  return s.send(mod)
 }
 
-export const updateModHandler = async (q: Request<UpdateModInput['params']>, s: Response) => {
+export const updateModHandler = async (q: Request<UpdateModInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const update = q.body
   const mod = await findMod({ slug })
@@ -21,14 +20,14 @@ export const updateModHandler = async (q: Request<UpdateModInput['params']>, s: 
   return s.send(updatedMod)
 }
 
-export const getModHandler = async (q: Request<GetModInput['params']>, s: Response) => {
+export const getModHandler = async (q: Request<GetModInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const mod = await findMod({ slug })
   if (mod == null) return s.sendStatus(404)
   return s.send(mod)
 }
 
-export const deleteModHandler = async (q: Request<DeleteModInput['params']>, s: Response) => {
+export const deleteModHandler = async (q: Request<DeleteModInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const mod = await findMod({ slug })
   if (mod == null) return s.sendStatus(404)
@@ -36,14 +35,14 @@ export const deleteModHandler = async (q: Request<DeleteModInput['params']>, s: 
   return s.sendStatus(200)
 }
 
-export const createModVersionHandler = async (q: Request<CreateModVersionInput['params']>, s: Response) => {
+export const createModVersionHandler = async (q: Request<CreateModVersionInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const params = q.params
   const body = q.body
   const modversion = await createModVersion({ ...params, ...body })
-  s.send(modversion)
+  return s.send(modversion)
 }
 
-export const updateModVersionHandler = async (q: Request<UpdateModVersionInput['params']>, s: Response) => {
+export const updateModVersionHandler = async (q: Request<UpdateModVersionInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const version = q.params.version
   const update = q.body
@@ -55,7 +54,7 @@ export const updateModVersionHandler = async (q: Request<UpdateModVersionInput['
   return s.send(updatedModVersion)
 }
 
-export const getModVersionHandler = async (q: Request<GetModVersionInput['params']>, s: Response) => {
+export const getModVersionHandler = async (q: Request<GetModVersionInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const version = q.params.version
   const modversion = await findModVersion({ slug, version })
@@ -63,7 +62,7 @@ export const getModVersionHandler = async (q: Request<GetModVersionInput['params
   return s.send(modversion)
 }
 
-export const deleteModVersionHandler = async (q: Request<DeleteModVersionInput['params']>, s: Response) => {
+export const deleteModVersionHandler = async (q: Request<DeleteModVersionInput['params']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   const slug = q.params.slug
   const version = q.params.version
   const modversion = await findModVersion({ slug, version })

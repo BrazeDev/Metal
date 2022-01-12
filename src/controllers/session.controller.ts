@@ -4,8 +4,9 @@ import { createSession, findSessions, updateSession } from '../services/session.
 import { validatePassword } from '../services/user.service'
 import { signJwt } from '../utils/jwt'
 
-export async function createUserSessionHandler (q: Request, s: Response) {
+export async function createUserSessionHandler (q: Request, s: Response): Promise<Response<any, Record<string, any>>> {
   const user = await validatePassword(q.body)
+  //console.log(user)
   if (user === false) return s.status(401).send('Invalid username or password')
   const session = await createSession(user._id, q.get('user-agent') ?? '')
   const accessToken = signJwt({ ...user, session: session._id }, 'accessTokenPrivateKey', { expiresIn: config.get('accessTokenTTL') })
@@ -13,13 +14,14 @@ export async function createUserSessionHandler (q: Request, s: Response) {
   return s.json({ accessToken, refreshToken })
 }
 
-export async function getUserSessionsHandler (q: Request, s: Response) {
+export async function getUserSessionsHandler (q: Request, s: Response): Promise<Response<any, Record<string, any>>> {
+  if (s.locals.user === null) return s.sendStatus(403)
   const userId = s.locals.user._id
   const sessions = await findSessions({ user: userId, valid: true })
   return s.json(sessions)
 }
 
-export async function deleteSessionHandler (q: Request, s: Response) {
+export async function deleteSessionHandler (q: Request, s: Response): Promise<Response<any, Record<string, any>>> {
   const sessionId = s.locals.user.session
   await updateSession({ _id: sessionId }, { valid: false })
   return s.json({ accessToken: null, refreshToken: null })

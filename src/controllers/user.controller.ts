@@ -4,7 +4,7 @@ import { createUser, findUser } from '../services/user.service'
 import { logMain as log } from '../utils/log'
 import { omit } from 'lodash'
 
-export const createUserHandler = async (q: Request<{}, {}, CreateUserInput['body']>, s: Response) => {
+export const createUserHandler = async (q: Request<{}, {}, CreateUserInput['body']>, s: Response): Promise<Response<any, Record<string, any>>> => {
   try {
     const user = await createUser(q.body)
     return s.send(user)
@@ -14,7 +14,7 @@ export const createUserHandler = async (q: Request<{}, {}, CreateUserInput['body
   }
 }
 
-export async function whoamiHandler (q: Request, s: Response) {
+export const whoamiHandler = async (q: Request, s: Response): Promise<Response<any, Record<string, any>>> => {
   const userId = s.locals.user._id
   const user = await findUser({ _id: userId })
   if (user == null) return s.sendStatus(403)

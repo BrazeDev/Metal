@@ -207,7 +207,7 @@ router.post('/mods/:slug', [requireUser, validateResource(createModSchema)], cre
  *         description: Slug (modID) of the mod
  *     responses:
  *       200:
- *         description: Ok             
+ *         description: Ok
  *       401:
  *         description: Not logged in
  *       404:
@@ -341,7 +341,7 @@ router.post('/mods/:slug/:version', requireUser, createModVersionHandler)
  *         description: Version of the mod version
  *     responses:
  *       200:
- *         description: Ok             
+ *         description: Ok
  *       401:
  *         description: Not logged in
  *       404:

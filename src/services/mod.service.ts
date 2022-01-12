@@ -1,10 +1,7 @@
 import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'
 import { DeleteResult } from 'mongodb'
-//import { get } from 'lodash'
-//import config from 'config'
 import { databaseResponseTimeHistogram } from '../utils/metrics'
 import { ModModel, ModVersionModel, ModDocument, ModVersionDocument, CreateModInput, CreateModVersionInput } from '../models/mod.model'
-//import { query } from 'express'
 
 export const createMod = async (input: CreateModInput): Promise<ModDocument & { _id: any }> => {
   const metricsLabels = { operation: 'createMod' }
