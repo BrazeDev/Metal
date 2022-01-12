@@ -71,8 +71,6 @@ router.post('/users', validateResource(createUserSchema), createUserHandler)
  *     responses:
  *       200: 
  *         description: Logged in
- *         content:
- *           application/json
  *       403:
  *         description: Not logged in      
  */

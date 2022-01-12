@@ -31,3 +31,11 @@ describe('Healthcheck', () => {
         })
     })
 })
+
+describe('Logging in', () => {
+    it('should create a user account', (done) => {
+        supertest(app)
+        .post('/api/users')
+        
+    })
+})

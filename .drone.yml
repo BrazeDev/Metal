@@ -1,0 +1,31 @@
+kind: pipeline
+name: test_and_build
+
+# This hasn't been tested or finished yet, and won't be until I can be bothered
+# to set my CI up again. The steps that have been filled in should work, but
+# YMMV, so don't blame me if this script kills your cat or summons the 
+# antichrist.
+
+steps:
+- name: Build typescript
+  image: node:16
+  commands:
+    - npm install -g yarn
+    - yarn install --frozen-lockfile
+    - tsc
+- name: Test w/ mocha
+  image: node:16
+  commands:
+    - npm install -g yarn
+    - yarn install --frozen-lockfile
+    - cross-env NODE_ENV=test mocha
+- name: NYC Coverage
+  image: node:16
+  commands:
+    - npm install -g yarn
+    - yarn install --frozen-lockfile
+    - cross-env NODE_ENV=test nyc mocha
+- name: Export coverage and test results
+- name: Build docker image
+- name: Push docker image to repo
+- name: Notify Discord

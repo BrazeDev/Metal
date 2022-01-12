@@ -18,5 +18,5 @@ export async function whoamiHandler(q: Request, s: Response) {
     const userId = s.locals.user._id
     const user = await findUser({ _id: userId })
     if (!user) return s.sendStatus(403)
-    return s.json(omit(user, 'password'))
+    return s.json(omit(user, 'password' , '_id', '__v' ))
 }

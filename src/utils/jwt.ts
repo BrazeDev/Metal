@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt, { TokenExpiredError } from 'jsonwebtoken'
 import config from 'config'
 import { logMain as log } from './log'
 
@@ -22,7 +22,7 @@ export function verifyJwt(
         const decoded = jwt.verify(token, publicKey)
         return { valid: true, expired: false, decoded }
     } catch (e: any) {
-        log.error(e)
+        if (typeof e !== typeof TokenExpiredError) log.error(e)
         return { valid: false, expired: e.message === 'jwt expired', decoded: null }
     }
 }
