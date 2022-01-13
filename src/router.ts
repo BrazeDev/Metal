@@ -17,6 +17,7 @@ import { createSessionSchema } from './schemas/session.schema'
 import validateResource from './middleware/validateResource'
 import requireUser from './middleware/requireUser'
 import { createModSchema, deleteModSchema, getModSchema, updateModSchema, updateModVersionSchema } from './schemas/mod.schema'
+import error from './utils/error'
 
 const router = express.Router()
 

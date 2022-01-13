@@ -9,7 +9,8 @@ import router from './router'
 import swaggerDocs from './utils/swagger'
 import deserializeUser from './middleware/deserializeUser'
 import error from './utils/error'
-import requestId from 'express-request-id'
+import requestId from './middleware/requestId'
+import helmet from 'helmet'
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ const mport = config.get<number>('metricsPort')
 const app = express()
 
 app.use(express.json())
+app.use(helmet())
 app.use(responseTime((q: Request, s: Response, t: number) => doResponseTime(q, s, t)))
 app.use(requestId())
 // Attempts to deserialize user from JWT, doesn't bother if there isn't one

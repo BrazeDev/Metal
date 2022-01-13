@@ -17,6 +17,7 @@
     "lint:eslint": "eslint"
   },
   "dependencies": {
+    "@types/helmet": "^4.0.0",
     "bcrypt": "^5.0.1",
     "config": "^3.3.6",
     "cors": "^2.8.5",
@@ -24,6 +25,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-request-id": "^1.4.1",
+    "helmet": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.1.5",
