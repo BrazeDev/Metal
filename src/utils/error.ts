@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 type ErrorDefinition = string
-let ErrorDefinition = {
+let ErrorDefinition: { [ index: string ]: string } = {
   M50000: 'Unknown error',
   M50001: 'Authentication required',
   M50002: 'Endpoint forbidden for this user',
