@@ -5,6 +5,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Build][build-shield]][build-url]
+[![Tests][tests-shield]][tests-url]
 
 <br />
 <p align="center">
@@ -55,7 +56,7 @@ This will be filled out in time
 [license-url]: https://github.com/BrazeDev/Metal/blob/master/LICENSE
 [discord-shield]: https://img.shields.io/discord/810632951993597952?style=flat-square
 [discord-url]: https://discord.gg/u7wG9ZSNRn
-[build-shield]: https://img.shields.io/drone/build/BrazeDev/Metal?server=https%3A%2F%2Fdrone.thatsimplekid.com&style=flat-square
+[build-shield]: https://img.shields.io/drone/build/BrazeDev/Metal?server=https%3A%2F%2Fdrone.herty.xyz&style=flat-square
 [build-url]: https://drone.herty.xyz/BrazeDev/Metal/
 [tests-shield]: https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fs3.herty.xyz%2Fbraze%2Fmaster%2Fmochawesome%2Fmochawesome-report%2Fshield.json
 [tests-url]: https://s3.herty.xyz/braze/master/mochawesome/mochawesome-report/mochawesome.html
