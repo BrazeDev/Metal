@@ -37,6 +37,8 @@ steps:
       from_secret: S3_SKEY
     source: mochawesome-report/**/*
     target: /${DRONE_BRANCH}/mochawesome
+    path_style: true
+    endpoint: https://s3.herty.xyz
 #- name: Upload coverage to S3
 #  image: plugins/s3
 #  settings:
