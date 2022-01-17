@@ -1,31 +1,35 @@
+# This hasn't been tested or finished yet, and won't be until I can be bothered
+# to set my CI up again. The steps that have been filled in should work, but
+# YMMV, so don't blame me if this script kills your cat or summons the
+# antichrist.
+
 kind: pipeline
 name: test_and_build
 
-# This hasn't been tested or finished yet, and won't be until I can be bothered
-# to set my CI up again. The steps that have been filled in should work, but
-# YMMV, so don't blame me if this script kills your cat or summons the 
-# antichrist.
+services:
+- name: test-db
+  image: mongo:5.0
 
 steps:
+- name: Install dependencies
+  image: node:16
+  commands:
+    - yarn install --frozen-lockfile
 - name: Build typescript
   image: node:16
   commands:
-    - npm install -g yarn
-    - yarn install --frozen-lockfile
-    - tsc
+    - node_modules/.bin/tsc --resolveJsonModule
 - name: Test w/ mocha
   image: node:16
   commands:
-    - npm install -g yarn
-    - yarn install --frozen-lockfile
-    - cross-env NODE_ENV=test mocha
+#    - npm i -g cross-env mocha ts-node tsconfig-paths typescript
+    - node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/mocha
 - name: NYC Coverage
   image: node:16
   commands:
-    - npm install -g yarn
-    - yarn install --frozen-lockfile
-    - cross-env NODE_ENV=test nyc mocha
-- name: Export coverage and test results
-- name: Build docker image
-- name: Push docker image to repo
-- name: Notify Discord
+#    - npm i -g cross-env nyc mocha
+    - node_modules/.bin/cross-env NODE_ENV=test nyc mocha
+#- name: Export coverage and test results
+#- name: Build docker image
+#- name: Push docker image to repo
+#- name: Notify Discord

@@ -215,7 +215,7 @@ describe('Endpoint /api/sessions', () => {
   it('should fail to list sessions without auth', (done) => {
     supertest(app)
       .get('/api/sessions')
-      .expect(403)
+      .expect(401)
       .end((e, r) => {
         if (e) done(e)
         done()

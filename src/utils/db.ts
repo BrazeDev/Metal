@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { MockMongoose } from 'mock-mongoose'
 import config from 'config'
 import { logMain as log } from './log'
 

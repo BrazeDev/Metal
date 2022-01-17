@@ -1,7 +1,7 @@
 export default {
   port: 8084,
   metricsPort: 9101,
-  dbConnection: 'mongodb://localhost:27017/metaltest',
+  dbConnection: 'mongodb://test-db:27017/metaltest',
   saltRounds: 10,
   accessTokenTTL: '15m',
   refreshTokenTTL: '1y',
