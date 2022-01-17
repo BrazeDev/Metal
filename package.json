@@ -11,8 +11,8 @@
     "build": "tsc --resolveJsonModule",
     "serve:dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "serve:prod": "tsc --resolveJsonModule && cross-env NODE_ENV=production node build/src/app.js",
-    "test:unit": "cross-env NODE_ENV=test mocha",
-    "test:coverage": "cross-env NODE_ENV=test nyc mocha",
+    "test:unit": "cross-env NODE_ENV=test mocha --kill",
+    "test:coverage": "cross-env NODE_ENV=test nyc mocha --kill",
     "lint:standard": "ts-standard",
     "lint:eslint": "eslint"
   },

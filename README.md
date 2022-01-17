@@ -43,18 +43,20 @@ Braze is a replacement for 'Solder' - the software created by the team behind th
 
 This will be filled out in time
 
-[contributors-shield]: https://img.shields.io/github/contributors/BrazeDev/Metal.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/BrazeDev/Metal.svg?style=flat-square
 [contributors-url]: https://github.com/BrazeDev/Metal/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/BrazeDev/Metal.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/BrazeDev/Metal.svg?style=flat-square
 [forks-url]: https://github.com/BrazeDev/Metal/network/members
-[stars-shield]: https://img.shields.io/github/stars/BrazeDev/Metal.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/BrazeDev/Metal.svg?style=flat-square
 [stars-url]: https://github.com/BrazeDev/Metal/stargazers
-[issues-shield]: https://img.shields.io/github/issues/BrazeDev/Metal.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/BrazeDev/Metal.svg?style=flat-square
 [issues-url]: https://github.com/BrazeDev/Metal/issues
-[license-shield]: https://img.shields.io/github/license/BrazeDev/Metal.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/BrazeDev/Metal.svg?style=flat-square
 [license-url]: https://github.com/BrazeDev/Metal/blob/master/LICENSE
-[discord-shield]: https://img.shields.io/discord/810632951993597952?style=for-the-badge
+[discord-shield]: https://img.shields.io/discord/810632951993597952?style=flat-square
 [discord-url]: https://discord.gg/u7wG9ZSNRn
-[build-shield]: https://img.shields.io/drone/build/BrazeDev/Metal?server=https%3A%2F%2Fdrone.thatsimplekid.com&style=for-the-badge
-[build-url]: https://drone.thatsimplekid.com/BrazeDev/Metal/
+[build-shield]: https://img.shields.io/drone/build/BrazeDev/Metal?server=https%3A%2F%2Fdrone.thatsimplekid.com&style=flat-square
+[build-url]: https://drone.herty.xyz/BrazeDev/Metal/
+[tests-shield]: https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fs3.herty.xyz%2Fbraze%2Fmaster%2Fmochawesome%2Fmochawesome-report%2Fshield.json
+[tests-url]: https://s3.herty.xyz/braze/master/mochawesome/mochawesome-report/mochawesome.html
 [product-screenshot]: meta/screenshot.png
