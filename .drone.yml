@@ -12,24 +12,41 @@ services:
 
 steps:
 - name: Install dependencies
-  image: node:16
+  image: node:17
   commands:
     - yarn install --frozen-lockfile
 - name: Build typescript
-  image: node:16
+  image: node:17
   commands:
     - node_modules/.bin/tsc --resolveJsonModule
 - name: Test w/ mocha
-  image: node:16
+  image: node:17
   commands:
-#    - npm i -g cross-env mocha ts-node tsconfig-paths typescript
-    - node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/mocha
-- name: NYC Coverage
-  image: node:16
-  commands:
-#    - npm i -g cross-env nyc mocha
-    - node_modules/.bin/cross-env NODE_ENV=test nyc mocha
-#- name: Export coverage and test results
+    - node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/mocha --exit
+#- name: NYC Coverage
+#  image: node:17
+#  commands:
+#    - node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha
+- name: Upload test results to S3
+  image: plugins/s3
+  settings:
+    bucket: braze
+    access_key: 
+      from_secret: S3_AKEY
+    secret_key:
+      from_secret: S3_SKEY
+    source: mochawesome-report/**/*
+    target: /${DRONE_BRANCH}/mochawesome
+#- name: Upload coverage to S3
+#  image: plugins/s3
+#  settings:
+#    bucket: braze
+#    access_key: 
+#      from_secret: S3_AKEY
+#    secret_key:
+#      from_secret: S3_SKEY
+#    source: coverage/**/*
+#    target: /${DRONE_BRANCH}/coverage
 #- name: Build docker image
 #- name: Push docker image to repo
 #- name: Notify Discord

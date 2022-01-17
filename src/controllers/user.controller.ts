@@ -10,7 +10,7 @@ export const createUserHandler = async (q: Request<{}, {}, CreateUserInput['body
     const user = await createUser(q.body)
     return s.send(user)
   } catch (e: any) {
-    if (e.message.includes('mailaddr:')) return error(q, s, 'M50103')
+    if (e.message.includes('mailaddr:')) return error(q, s, 'M50101')
     if (e.message.includes('username:')) return error(q, s, 'M50102') 
     return error(q, s, 'M50004')
   }

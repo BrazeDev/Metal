@@ -42,7 +42,7 @@ export const createUserSchema = object({
   body: object({
     username: string({
       required_error: '`username` is required'
-    }),
+    }).min(3, 'Username must contain at least 3 characters'),
     mailaddr: string({
       required_error: '`mailaddr` is required'
     }).email('Invalid email address'),

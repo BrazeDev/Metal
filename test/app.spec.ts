@@ -147,7 +147,7 @@ describe('Endpoint /api/users', () => {
         password: mockUserData.password,
         passconf: mockUserData.password
       })
-      .expect(400)
+      .expect(409)
       .end((e, r) => {
         if (e) done(e)
         done()
@@ -162,7 +162,7 @@ describe('Endpoint /api/users', () => {
         password: mockUserData.password,
         passconf: mockUserData.password
       })
-      .expect(400)
+      .expect(409)
       .end((e, r) => {
         if (e) done(e)
         done()
