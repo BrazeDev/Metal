@@ -40,6 +40,8 @@
 
 Braze is a replacement for 'Solder' - the software created by the team behind the Technic launcher. It allows for the provisioning of versioned modpacks, and when used with a compatible client, allows for incremental updates of modpacks. This is useful as it negates the need to download the entire modpack to update a couple of config files - the client only needs to download exactly the required files.
 
+This is currently being rewritten.
+
 ## Usage
 
 This will be filled out in time
